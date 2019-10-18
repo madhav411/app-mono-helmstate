@@ -12,7 +12,7 @@ pipeline {
         HELM_CHARTS_GIT_REPO = 'github.com/madhav411/app-mono-helmcharts.git'
         HELM_CHARTS_REPO = 'app-mono-helmcharts'
         HELM_CHARTS_BRANCH = 'master'
-        GITHUB_HOOK_SECRET = "M@dh@v17"
+        GITHUB_HOOK_SECRET = "2e1c288a45a407ab84578d252580da4086c8b293"
         K8S_SERVER = credentials('k8s-server')
         K8S_TILLER_TOKEN = credentials('k8s-tiller-token')
         K8S_CA_BASE64 = credentials('k8s-ca-base84')
