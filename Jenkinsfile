@@ -1,33 +1,18 @@
 def INSTALL = ""
 pipeline {
     // If you are running jenkins in a container use "agent { docker { image 'dtzar/helm-kubectl:2.11.0' }}"
-    agent {
-        kubernetes {
-          label 'deploy'
-          defaultContainer 'jnlp'
-          yaml """
-apiVersion: v1
-kind: Pod
-metadata:
-  labels:
-    app: jenkins-deploy
-spec:
-  containers:
-  - name: deploy
-    image: dtzar/helm-kubectl:2.11.0
-    command:
-    - cat
-    tty: true
-"""
-        }
-    }
+	agent {
+		docker {
+			image 'dtzar/helm-kubectl:2.11.0'
+		}
+	}
 
     environment {
         KUBECONFIG = 'kubeconfig'
-        HELM_CHARTS_GIT_REPO = 'github.com/infracloudio/app-mono-helmcharts.git'
+        HELM_CHARTS_GIT_REPO = 'github.com/madhav411/app-mono-helmcharts.git'
         HELM_CHARTS_REPO = 'app-mono-helmcharts'
         HELM_CHARTS_BRANCH = 'master'
-        GITHUB_HOOK_SECRET = "github-webhook-token-app-mono-helmstate"
+        GITHUB_HOOK_SECRET = "M@dh@v17"
         K8S_SERVER = credentials('k8s-server')
         K8S_TILLER_TOKEN = credentials('k8s-tiller-token')
         K8S_CA_BASE64 = credentials('k8s-ca-base84')
